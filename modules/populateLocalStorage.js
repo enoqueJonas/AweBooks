@@ -28,7 +28,7 @@ const storageAvailable = (type) => {
 const populateLocalStorage = (booksLocalStorageObj) => {
   let title = '';
   let author = '';
-
+  console.log('Enter')
   // Conditional statement to check if the <input> with #title id has text/ value
   if (inputTitle.value !== null) {
     title = inputTitle.value;
