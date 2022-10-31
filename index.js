@@ -2,6 +2,7 @@
 // Getting the elements from the html page
 import { Book } from "./modules/Book.js";
 import { addBookLink, contactBookLink, listBookLink } from "./modules/routing.js";
+import { storageAvailable } from "./modules/storageAvailable.js";
 const inputTitle = document.querySelector('#title');
 const inputAuthor = document.querySelector('#author');
 const bookContainer = document.querySelector('.books-container');
@@ -81,29 +82,6 @@ btn.addEventListener('click', () => {
   call.add(new Book(inputTitle.value, inputAuthor.value));
 });
 // Adding a function to check if the local storage is available on the browser
-function storageAvailable(type) {
-  let storage;
-  try {
-    storage = window[type];
-    const x = '__storage_test__';
-    storage.setItem(x, x);
-    storage.removeItem(x);
-    return true;
-  } catch (e) {
-    return e instanceof DOMException && (
-    // everything except Firefox
-      e.code === 22
-            // Firefox
-            || e.code === 1014
-            // test name field too, because code might not be present
-            // everything except Firefox
-            || e.name === 'QuotaExceededError'
-            // Firefox
-            || e.name === 'NS_ERROR_DOM_QUOTA_REACHED')
-            // acknowledge QuotaExceededError only if there's something already stored
-            && (storage && storage.length !== 0);
-  }
-}
 
 function populateLocalStorage() {
   let title = '';
