@@ -3,8 +3,7 @@
 import Book from './modules/Book.js';
 import { addBookLink, contactBookLink, listBookLink } from './modules/routing.js';
 import SettingBooks from './modules/SettingBooks.js';
-import populateLocalStorage from './modules/populateLocalStorage.js';
-import loadLocalstorageData from './modules/loadLocalstorageData.js';
+import storageAvailable from './modules/storageAvailable.js';
 import { DateTime } from "./modules/luxon.js";
 
 const inputTitle = document.querySelector('#title');
@@ -55,6 +54,25 @@ function populateLocalStorage() {
   }
 }
 
+function loadLocalstorageData() {
+  // Creating a new istance of booksLocalStorageObject with empty values
+  let booksLocalStorageObj = new Book('', '');
+
+  // Conditional statement to check id localStorage is available on the browser
+  if (storageAvailable('localStorage')) {
+    // If the condition is true, get the localStorage data and assing to the booksLocalStorageObj
+    booksLocalStorageObj = JSON.parse(localStorage.getItem('formData'));
+  }
+
+  // Conditional to check if booksLocalStorageObj has data
+  if (booksLocalStorageObj !== null) {
+    // If the condition is true, load the data the the input elements
+    inputTitle.value = booksLocalStorageObj.title;
+    inputAuthor.value = booksLocalStorageObj.author;
+  }
+}
+
+
 btn.addEventListener('click', () => {
   call.add(new Book(inputTitle.value, inputAuthor.value));
 });
@@ -63,6 +81,6 @@ const book = new Book('', '');
 window.addEventListener('load', () => {
   dateP.innerHTML = now;
 })
-window.addEventListener('load', loadLocalstorageData(book));
-inputTitle.addEventListener('input', (book) => populateLocalStorage);
-inputAuthor.addEventListener('input', (book) => populateLocalStorage);
+window.addEventListener('load', loadLocalstorageData);
+inputTitle.addEventListener('input', populateLocalStorage);
+inputAuthor.addEventListener('input', populateLocalStorage);
