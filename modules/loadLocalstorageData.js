@@ -4,15 +4,15 @@ const inputAuthor = document.querySelector('#author');
 const storageAvailable = (type) => {
   let storage;
   try {
-      storage = window[type];
-      const x = '__storage_test__';
-      storage.setItem(x, x);
-      storage.removeItem(x);
-      return true;
+    storage = window[type];
+    const x = '__storage_test__';
+    storage.setItem(x, x);
+    storage.removeItem(x);
+    return true;
   } catch (e) {
-      return e instanceof DOMException && (
-          // everything except Firefox
-          e.code === 22
+    return e instanceof DOMException && (
+    // everything except Firefox
+      e.code === 22
           // Firefox
           || e.code === 1014
           // test name field too, because code might not be present
@@ -23,9 +23,9 @@ const storageAvailable = (type) => {
           // acknowledge QuotaExceededError only if there's something already stored
           && (storage && storage.length !== 0);
   }
-}
+};
 
-export const loadLocalstorageData = (booksLocalStorageObj) => {
+const loadLocalstorageData = (booksLocalStorageObj) => {
   // Conditional statement to check id localStorage is available on the browser
   if (storageAvailable('localStorage')) {
     // If the condition is true, get the localStorage data and assing to the booksLocalStorageObj
@@ -38,4 +38,6 @@ export const loadLocalstorageData = (booksLocalStorageObj) => {
     inputTitle.value = booksLocalStorageObj.title;
     inputAuthor.value = booksLocalStorageObj.author;
   }
-}
+};
+
+export default loadLocalstorageData;

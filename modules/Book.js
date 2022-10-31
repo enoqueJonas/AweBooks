@@ -1,8 +1,8 @@
-//This is the books class
+// This is the books class
 
-export class Book {
-    constructor(title, author) {
-        this.title = title;
-        this.author = author;
-    }
+export default class Book {
+  constructor(title, author) {
+    this.title = title;
+    this.author = author;
+  }
 }

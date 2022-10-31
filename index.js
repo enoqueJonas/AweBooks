@@ -1,10 +1,11 @@
 /* eslint-disable max-classes-per-file */
 // Getting the elements from the html page
-import { Book } from "./modules/Book.js";
-import { addBookLink, contactBookLink, listBookLink } from "./modules/routing.js";
-import { SettingBooks } from "./modules/SettingBooks.js";
-import { populateLocalStorage } from "./modules/populateLocalStorage.js";
-import { loadLocalstorageData } from "./modules/loadLocalstorageData.js";
+import Book from './modules/Book.js';
+import { addBookLink, contactBookLink, listBookLink } from './modules/routing.js';
+import SettingBooks from './modules/SettingBooks.js';
+import populateLocalStorage from './modules/populateLocalStorage.js';
+import loadLocalstorageData from './modules/loadLocalstorageData.js';
+
 const inputTitle = document.querySelector('#title');
 const inputAuthor = document.querySelector('#author');
 const btn = document.querySelector('#add-btn');
@@ -18,7 +19,6 @@ addLink.addEventListener('click', addBookLink);
 contactLink.addEventListener('click', listBookLink);
 
 listLink.addEventListener('click', contactBookLink);
-
 
 const call = new SettingBooks();
 if (localStorage.getItem('bookItems')) {
