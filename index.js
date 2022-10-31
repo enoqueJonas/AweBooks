@@ -4,7 +4,7 @@ import Book from './modules/Book.js';
 import { addBookLink, contactBookLink, listBookLink } from './modules/routing.js';
 import SettingBooks from './modules/SettingBooks.js';
 import storageAvailable from './modules/storageAvailable.js';
-import { DateTime } from "./modules/luxon.js";
+import { DateTime } from './modules/luxon.js';
 
 const inputTitle = document.querySelector('#title');
 const inputAuthor = document.querySelector('#author');
@@ -12,7 +12,7 @@ const btn = document.querySelector('#add-btn');
 const listLink = document.querySelector('#list-link');
 const addLink = document.querySelector('#add-link');
 const contactLink = document.querySelector('#contact-link');
-const dateP = document.querySelector('.date')
+const dateP = document.querySelector('.date');
 const now = DateTime.now();
 
 // Addinding a book class with a constructor that will hold the title and the author
@@ -72,15 +72,13 @@ function loadLocalstorageData() {
   }
 }
 
-
 btn.addEventListener('click', () => {
   call.add(new Book(inputTitle.value, inputAuthor.value));
 });
 
-const book = new Book('', '');
 window.addEventListener('load', () => {
   dateP.innerHTML = now;
-})
+});
 window.addEventListener('load', loadLocalstorageData);
 inputTitle.addEventListener('input', populateLocalStorage);
 inputAuthor.addEventListener('input', populateLocalStorage);
