@@ -1,4 +1,3 @@
-/* eslint-disable max-classes-per-file */
 // Getting the elements from the html page
 import Book from './modules/Book.js';
 import { addBookLink, contactBookLink, listBookLink } from './modules/routing.js';
